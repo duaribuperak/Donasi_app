@@ -8,96 +8,225 @@
 </head>
 <body>
   <!-- component -->
-  <div class="w-screen min-h-screen bg-white pt-8">
-    <a href="/home" class="">
-      <div class="btn rounded-md ml-7 mt-7 text-slate-100 bg-slate-500 hover:bg-slate-800 border-none items-center">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 15.75 3 12m0 0 3.75-3.75M3 12h18" />
-        </svg><p>Kembali</p>
-      </div>
-    </a>
-    <div class="flex justify-center items-center">
-      <!-- COMPONENT CODE -->
-      <div class="container mx-auto px-4 lg:px-20">
-        <div class=" w-full mx-auto p-8 my-4 md:px-12 lg:w-9/12 lg:pl-20 lg:pr-40 mr-auto rounded-2xl shadow-2xl">
-          <div class="flex">
-            <h1 class="font-bold text-5xl text-black">Cair-cair</h1>
-          </div>
-          
-          <div class="grid grid-cols-1 gap-5 md:grid-cols-2 mt-5">
-            <input class="w-full bg-gray-100 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
-            type="text" placeholder="First Name*" />
-            <input class="w-full bg-gray-100 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
-            type="text" placeholder="Last Name*" />
-            <input class="w-full bg-gray-100 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
-            type="email" placeholder="Email*" />
-            <input class="w-full bg-gray-100 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
-            type="number" placeholder="Phone*" />
-          </div>
-          <div class="my-4">
-            <textarea placeholder="Message*" class="w-full h-32 bg-gray-100 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"></textarea>
-          </div>
-          <div class="my-2 min-w-full lg:w-1/4 ">
-            <button class="text-lg font-medium tracking-wide bg-blue-900 text-gray-100 p-3 rounded-lg w-full 
-                        focus:outline-none focus:shadow-outline">
-              Cairin Wirr  
-            </button>
-          </div>
-        </div>
-  
-        <!-- <div
-          class="w-full lg:-mt-[400px]  lg:w-2/6 px-8 py-12 ml-auto bg-blue-900 rounded-2xl">
-          <div class="flex flex-col text-white">
-            <h1 class="font-bold uppercase text-4xl my-4">Drop in our office</h1>
-            <p class="text-gray-400">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
-              tincidunt arcu diam,
-              eu feugiat felis fermentum id. Curabitur vitae nibh viverra, auctor turpis sed, scelerisque ex.
-            </p>
-  
-            <div class="flex my-4 w-2/3 lg:w-1/2">
-              <div class="flex flex-col">
-                <i class="fas fa-map-marker-alt pt-2 pr-2" />
-              </div>
-              <div class="flex flex-col">
-                <h2 class="text-2xl">Main Office</h2>
-                <p class="text-gray-400">5555 Tailwind RD, Pleasant Grove, UT 73533</p>
-              </div>
-            </div>
-            
-            <div class="flex my-4 w-2/3 lg:w-1/2">
-              <div class="flex flex-col">
-                <i class="fas fa-phone-alt pt-2 pr-2" />
-              </div>
-              <div class="flex flex-col">
-                <h2 class="text-2xl">Call Us</h2>
-                <p class="text-gray-400">Tel: xxx-xxx-xxx</p>
-                <p class="text-gray-400">Fax: xxx-xxx-xxx</p>
-              </div>
-            </div>
-            
-            <div class="flex my-4 w-2/3 lg:w-1/2">
-              <a href="https://www.facebook.com/ENLIGHTENEERING/" target="_blank" rel="noreferrer" class="rounded-full bg-white h-8 w-8 inline-block mx-1 text-center pt-1">
-                <i class="fab fa-facebook-f text-blue-900" />
-              </a>
-              <a href="https://www.linkedin.com/company/enlighteneering-inc-" target="_blank" rel="noreferrer" class="rounded-full bg-white h-8 w-8 inline-block mx-1 text-center pt-1">
-                <i class="fab fa-linkedin-in text-blue-900" />
-              </a>
-            </div>
-          </div>
-        </div> -->
-      </div>
-      <!-- COMPONENT CODE -->
-    </div>
-  </div>
+<!-- Code on GiHub: https://github.com/vitalikda/form-floating-labels-tailwindcss -->
+<style>
+  .-z-1 {
+    z-index: -1;
+  }
 
-<!-- BUY ME A PIZZA AND HELP SUPPORT OPEN-SOURCE RESOURCES -->
-<!-- <div class="flex items-end justify-end fixed bottom-0 right-0 mb-4 mr-4 z-10">
-  <div>
-    <a title="Buy me a pizza" href="https://www.buymeacoffee.com/Dekartmc" target="_blank" class="block w-16 h-16 rounded-full transition-all shadow hover:shadow-lg transform hover:scale-110 hover:rotate-12">
-      <img class="object-cover object-center w-full h-full rounded-full" src="https://img.icons8.com/emoji/48/000000/pizza-emoji.png"/>
-    </a>
+  .origin-0 {
+    transform-origin: 0%;
+  }
+
+  input:focus ~ label,
+  input:not(:placeholder-shown) ~ label,
+  textarea:focus ~ label,
+  textarea:not(:placeholder-shown) ~ label,
+  select:focus ~ label,
+  select:not([value='']):valid ~ label {
+    /* @apply transform; scale-75; -translate-y-6; */
+    --tw-translate-x: 0;
+    --tw-translate-y: 0;
+    --tw-rotate: 0;
+    --tw-skew-x: 0;
+    --tw-skew-y: 0;
+    transform: translateX(var(--tw-translate-x)) translateY(var(--tw-translate-y)) rotate(var(--tw-rotate))
+      skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+    --tw-scale-x: 0.75;
+    --tw-scale-y: 0.75;
+    --tw-translate-y: -1.5rem;
+  }
+
+  input:focus ~ label,
+  select:focus ~ label {
+    /* @apply text-black; left-0; */
+    --tw-text-opacity: 1;
+    color: rgba(0, 0, 0, var(--tw-text-opacity));
+    left: 0px;
+  }
+</style>
+
+
+<div class="min-h-screen bg-gray-100 p-0 sm:p-12">
+  <!-- button kembali -->
+  <a href="/home" class="">
+    <div class="btn rounded-md text-slate-100 bg-slate-500 hover:bg-slate-800 border-none items-center">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 15.75 3 12m0 0 3.75-3.75M3 12h18" />
+      </svg><p>Kembali</p>
+    </div>
+  </a>
+  <div class="mx-auto max-w-md px-6 py-12 bg-white border-0 shadow-lg sm:rounded-3xl">
+    <h1 class="text-2xl font-bold  text-slate-800">Cair-Cair Wirr</h1>
+    <p class="mb-8">Alhamdulillah bisa main sama ayang, buruan cairin!!</p>
+    <form id="form" novalidate action="">
+      
+      <div class="relative z-0 w-full mb-5">
+        <input
+          type="number"
+          name="nominal"
+          placeholder=" "
+          class="pt-3 pb-2 pl-7 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 focus:border-black border-gray-200"
+          />
+        <div class="absolute top-0 left-0 mt-3 ml-0 text-gray-400">Rp.</div>
+        <label for="nominal" class="absolute duration-300 top-3 left-8 -z-1 origin-0 text-gray-500"><label class="text-red-600">*</label >Jumlah Nominal Yang Ingin Dicairkan</label>
+        <!-- <span class="text-sm text-red-600 hidden" id="error">Nominal wajib di isi</span> -->
+      </div>
+
+      <div class="relative z-0 w-full mb-5">
+        <input
+          type=""
+          name="biayaAdmin"
+          placeholder=" "
+          class="pt-3 pb-2 pl-7 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 focus:border-black border-gray-200"
+          /> 
+        <div class="absolute top-0 right-0 mt-3 mr-4 text-gray-400">(min Rp.5000)</div>
+        <div class="absolute top-0 left-0 mt-3 ml-0 text-gray-400">Rp.</div>
+        <label for="nominal" class="absolute duration-300 top-3 left-8 -z-1 origin-0 text-gray-500"><label class="text-red-600">*</label >Biaya Admin</label>
+        <!-- <span class="text-sm text-red-600 hidden" id="error">Nominal wajib di isi</span> -->
+      </div>
+
+      <div class="relative z-0 w-full mb-5">
+        <input
+          type="email"
+          name="email"
+          placeholder=" "
+          class="pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 focus:border-black border-gray-200"
+        />
+        <label for="email" class="absolute duration-300 top-3 -z-1 origin-0 text-gray-500"><label class="text-red-600">*</label >Alamat Bank / E-Wallet</label>
+        <!-- <span class="text-sm text-red-600 hidden" id="error">Email yang dikirim wajib di isi wajib di isi</span> -->
+      </div>
+
+      <!-- <div class="relative z-0 w-full mb-5">
+        <input
+          type="password"
+          name="password"
+          placeholder=" "
+          class="pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 focus:border-black border-gray-200"
+        />
+        <label for="password" class="absolute duration-300 top-3 -z-1 origin-0 text-gray-500">Password</label>
+        <span class="text-sm text-red-600 hidden" id="error">Password wajib di isi</span>
+      </div> -->
+
+      <!-- <fieldset class="relative z-0 w-full p-px mb-5">
+        <legend class="absolute text-gray-500 transform scale-75 -top-3 origin-0">Choose an option</legend>
+        <div class="block pt-3 pb-2 space-x-4">
+          <label>
+            <input
+              type="radio"
+              name="radio"
+              value="1"
+              class="mr-2 text-black border-2 border-gray-300 focus:border-gray-300 focus:ring-black"
+            />
+            Option 1
+          </label>
+          <label>
+            <input
+              type="radio"
+              name="radio"
+              value="2"
+              class="mr-2 text-black border-2 border-gray-300 focus:border-gray-300 focus:ring-black fill-transparent"
+            />
+            Option 2
+          </label>
+        </div>
+        <span class="text-sm text-red-600 hidden" id="error">Option has to be selected</span>
+      </fieldset> -->
+
+      <!-- <div class="relative z-0 w-full mb-5">
+        <select
+          name="select"
+          value=""
+          onclick="this.setAttribute('value', this.value);"
+          class="pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none z-1 focus:outline-none focus:ring-0 focus:border-black border-gray-200"
+        >
+          <option value="" selected disabled hidden></option>
+          <option value="1">Dana</option>
+          <option value="2">Gopay</option>
+          <option value="3">Qris</option>
+          <option value="4">Link Aja</option>
+          <option value="5">Ovo</option>
+        </select>
+        <label for="select" class="absolute duration-300 top-3 -z-1 origin-0 text-gray-500">Pilih Metode Pembayaran</label>
+        <span class="text-sm text-red-600 hidden" id="error">Option has to be selected</span>
+      </div> -->
+
+      <!-- <div class="flex flex-row space-x-4">
+        <div class="relative z-0 w-full mb-5">
+          <input
+            type="text"
+            name="tanggal"
+            placeholder=" "
+            onclick="this.setAttribute('type', 'date');"
+            class="pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 focus:border-black border-gray-200"
+          />
+          <label for="tanggal" class="absolute duration-300 top-3 -z-1 origin-0 text-gray-500">Tanggal</label>
+          <span class="text-sm text-red-600 hidden" id="error">Tanggal wajib di isi</span>
+        </div>
+        <div class="relative z-0 w-full">
+          <input
+            type="text"
+            name="time"
+            placeholder=" "
+            onclick="this.setAttribute('type', 'time');"
+            class="pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 focus:border-black border-gray-200"
+          />
+          <label for="time" class="absolute duration-300 top-3 -z-1 origin-0 text-gray-500">Time</label>
+          <span class="text-sm text-red-600 hidden" id="error">Time is required</span>
+        </div>
+      </div> -->
+
+      <!-- <div class="relative z-0 w-full mb-5">
+        <input
+          type="number"
+          name="nominal"
+          placeholder=" "
+          class="pt-3 pb-2 pl-7 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 focus:border-black border-gray-200"
+        />
+        <div class="absolute top-0 left-0 mt-3 ml-0 text-gray-400">Rp.</div>
+        <label for="nominal" class="absolute duration-300 top-3 left-8 -z-1 origin-0 text-gray-500">Nominal</label>
+        <span class="text-sm text-red-600 hidden" id="error">Nominal wajib di isi</span>
+      </div> -->
+
+      <!-- <div class="relative z-0 w-full mb-5">
+        <textarea name="pesan" id="" cols="51" rows="7" class=" bg-slate-100 rounded-md font-normal pl-2" placeholder="pesan"></textarea>
+        <span class=" text-sm">*harap di isi ya, tapi optional kok</span>
+      </div> -->
+
+      <button
+        id="submit"
+        type="submit"
+        class="w-full px-6 py-3 mt-3 text-lg font-medium text-white transition-all duration-150 ease-linear rounded-md shadow outline-none bg-slate-500 hover:bg-slate-700 hover:shadow-lg focus:outline-none"
+        >
+        Kirim Wirrr
+      </button>
+    </form>
   </div>
-</div> -->
+</div>
+
+<script>
+  'use strict'
+
+  document.getElementById('submit').addEventListener('click', kirimWir)
+  // const errMessages = document.querySelectorAll('#error')
+
+  function kirimWir() {
+    // Show error message
+    errMessages.forEach((el) => {
+      el.classList.toggle('hidden')
+    })
+
+    // Highlight input and label with red
+    const allBorders = document.querySelectorAll('.border-gray-200')
+    const allTexts = document.querySelectorAll('.text-gray-800')
+    allBorders.forEach((el) => {
+      el.classList.toggle('border-red-600')
+    })
+    allTexts.forEach((el) => {
+      el.classList.toggle('text-red-600')
+    })
+  }
+</script>
 
 </body>
 </html>
