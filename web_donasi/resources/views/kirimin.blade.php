@@ -3,10 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script type="text/javascript"
+            src="https://app.sandbox.midtrans.com/snap/snap.js"
+            data-client-key="{{ env('MIDTRANS_CLIENT_KEY') }}"></script>
   @vite('resources/css/app.css')
   <title>Document</title>
 </head>
 <body>
+
+
   <!-- component -->
 <!-- Code on GiHub: https://github.com/vitalikda/form-floating-labels-tailwindcss -->
 <style>
@@ -47,7 +52,7 @@
 </style>
 
 <div class="min-h-screen bg-gray-100 p-0 sm:p-12">
-  <a href="/profile" class="fixed ">
+  <a href="/home" class="fixed ">
     <div class="btn rounded-md text-slate-100 bg-slate-500 hover:bg-slate-800 border-none items-center">
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
         <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 15.75 3 12m0 0 3.75-3.75M3 12h18" />
@@ -56,18 +61,18 @@
   </a>
   <div class="mx-auto max-w-md px-6 py-12 bg-white border-0 shadow-lg sm:rounded-3xl">
     <h1 class="text-2xl font-bold  text-slate-800">Kirim-Kirim Wirrr</h1>
-    <p class="mb-8">saling berbagi itu indah</p>
-    <form id="form" novalidate action="">
+    <p class="mb-8">saling berbagi itu indah kirim ke {{ $user->nama }}</p>
+    <form id="form" method="post" action="/kirimin">
       <div class="relative z-0 w-full mb-5">
         <input
           type="text"
-          name="nama"
-          placeholder=" "
+          name="name"
+          placeholder=""
+          value=""
           required
           class="pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 focus:border-black border-gray-200"
         />
         <label for="nama" class="absolute duration-300 top-3 -z-1 origin-0 text-gray-500">Nama User</label>
-        <!-- <span class="text-sm text-red-600 hidden" id="error">Nama user yang dikirim wajib di isi</span> -->
       </div>
 
       <div class="relative z-0 w-full mb-5">
@@ -75,96 +80,33 @@
           type="email"
           name="email"
           placeholder=" "
+          value=""
           class="pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 focus:border-black border-gray-200"
         />
         <label for="email" class="absolute duration-300 top-3 -z-1 origin-0 text-gray-500">Alamat Email</label>
-        <!-- <span class="text-sm text-red-600 hidden" id="error">Email yang dikirim wajib di isi wajib di isi</span> -->
       </div>
-
-      <!-- <div class="relative z-0 w-full mb-5">
-        <input
-          type="password"
-          name="password"
-          placeholder=" "
-          class="pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 focus:border-black border-gray-200"
-        />
-        <label for="password" class="absolute duration-300 top-3 -z-1 origin-0 text-gray-500">Password</label>
-        <span class="text-sm text-red-600 hidden" id="error">Password wajib di isi</span>
-      </div> -->
-
-      <!-- <fieldset class="relative z-0 w-full p-px mb-5">
-        <legend class="absolute text-gray-500 transform scale-75 -top-3 origin-0">Choose an option</legend>
-        <div class="block pt-3 pb-2 space-x-4">
-          <label>
-            <input
-              type="radio"
-              name="radio"
-              value="1"
-              class="mr-2 text-black border-2 border-gray-300 focus:border-gray-300 focus:ring-black"
-            />
-            Option 1
-          </label>
-          <label>
-            <input
-              type="radio"
-              name="radio"
-              value="2"
-              class="mr-2 text-black border-2 border-gray-300 focus:border-gray-300 focus:ring-black fill-transparent"
-            />
-            Option 2
-          </label>
-        </div>
-        <span class="text-sm text-red-600 hidden" id="error">Option has to be selected</span>
-      </fieldset> -->
-
-      <div class="relative z-0 w-full mb-5">
-        <select
-          name="select"
-          value=""
-          onclick="this.setAttribute('value', this.value);"
-          class="pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none z-1 focus:outline-none focus:ring-0 focus:border-black border-gray-200"
-        >
-          <option value="" selected disabled hidden></option>
-          <option value="1">Dana</option>
-          <option value="2">Gopay</option>
-          <option value="3">Qris</option>
-          <option value="4">Link Aja</option>
-          <option value="5">Ovo</option>
-        </select>
-        <label for="select" class="absolute duration-300 top-3 -z-1 origin-0 text-gray-500">Pilih Metode Pembayaran</label>
-        <!-- <span class="text-sm text-red-600 hidden" id="error">Option has to be selected</span> -->
-      </div>
+      
 
       <div class="flex flex-row space-x-4">
         <div class="relative z-0 w-full mb-5">
           <input
             type="text"
-            name="tanggal"
+            name="date"
             placeholder=" "
             onclick="this.setAttribute('type', 'date');"
+            value="{{ now()->format('m/d/Y') }}"
             class="pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 focus:border-black border-gray-200"
           />
           <label for="tanggal" class="absolute duration-300 top-3 -z-1 origin-0 text-gray-500">Tanggal</label>
           <!-- <span class="text-sm text-red-600 hidden" id="error">Tanggal wajib di isi</span> -->
         </div>
-        <!-- <div class="relative z-0 w-full">
-          <input
-            type="text"
-            name="time"
-            placeholder=" "
-            onclick="this.setAttribute('type', 'time');"
-            class="pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 focus:border-black border-gray-200"
-          />
-          <label for="time" class="absolute duration-300 top-3 -z-1 origin-0 text-gray-500">Time</label>
-          <span class="text-sm text-red-600 hidden" id="error">Time is required</span>
-        </div> -->
       </div>
 
       <div class="relative z-0 w-full mb-5">
         <input
           type="number"
           name="nominal"
-          placeholder=" "
+          placeholder=""
           class="pt-3 pb-2 pl-7 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 focus:border-black border-gray-200"
         />
         <div class="absolute top-0 left-0 mt-3 ml-0 text-gray-400">Rp.</div>
@@ -173,17 +115,7 @@
       </div>
 
       <div class="relative z-0 w-full mb-5">
-        <!-- <input
-          type="text"
-          name="pesan"
-          placeholder=" "
-          class="pt-3 pb-2 pr-12 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 focus:border-black border-gray-200"
-        />
-        <div class="absolute top-0 right-0 mt-3 mr-4 text-gray-400"></div>
-        <label for="pesan" class="absolute duration-300 top-3 -z-1 origin-0 text-gray-500">pesan</label>
-        <span class="text-sm text-red-600 hidden" id="error">Pesan Wajib Di isi</span> -->
-        
-        <textarea name="pesan" id="" cols="51" rows="7" class=" bg-slate-100 rounded-md font-normal pl-2" placeholder="pesan"></textarea>
+        <textarea name="message" id="" cols="51" rows="7" class=" bg-slate-100 rounded-md font-normal pl-2" placeholder="message"></textarea>
         <span class=" text-sm">*harap di isi ya, tapi optional kok</span>
       </div>
 
@@ -198,11 +130,72 @@
   </div>
 </div>
 
+<script type="text/javascript">
+  
+
+  async function coba(payload, result) {
+    const data = (await fetch("http://localhost:8000/api/create", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        "user_id": "{{ auth()->id() }}",
+        "to_user_id": "{{ $user->id }}",
+        "name": payload.get('name'),
+        "email": payload.get('email'),
+        "message": payload.get('message'),
+        "data": result
+      })
+    }).json())
+  }
+
+let payButton = document.getElementById("form");
+let token = undefined
+payButton.addEventListener("submit", async function (e) {
+    e.preventDefault()
+    const payload = new FormData(payButton)
+    const data = (await fetch("http://localhost:8000/api/get-snap-token", {
+      method:"POST",
+      headers:{
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        name: payload.get('name'),
+        email: payload.get('email'),
+        nominal: payload.get('nominal'),
+        message: payload.get('message'),
+        username: "{{ auth()->user()->username }}"
+      })
+    })).json()
+
+    data.then((res) => {
+      snap.pay(res.token, {
+        onSuccess: async function(result){
+          await coba(payload, result)
+        },
+        onPending: async function(result){
+          console.log(result)
+          await coba(payload, result)
+        },
+        onError: async function(result){
+          await coba(payload, result)
+        },
+        onClose: function(){
+          alert('Transaksi belum di buat')
+        }
+      });
+    })
+  });
+</script>
+
 <script>
   'use strict'
 
   document.getElementById('submit').addEventListener('click', kirimWir)
   // const errMessages = document.querySelectorAll('#error')
+
+
 
   function kirimWir() {
     // Show error message

@@ -29,6 +29,12 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    protected $casts = [
+        'password' => 'hashed',
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime'
+    ];
+
     // mengambil data donasi dari user
     public function donations(){
         return $this->hasMany(Donation::class, 'user_id');

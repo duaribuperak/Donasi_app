@@ -25,7 +25,7 @@
   <a href="#" class="block p-12 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-600  dark:hover:bg-gray-800 cursor-pointer-none">
     <div class="flex items-center">
       <h1 class="mb-2 text-4xl font-semibold tracking-wider text-gray-900 dark:text-white">Rp.</h1>
-      <h1 class="mb-2 text-6xl font-semibold tracking-wider text-gray-900 dark:text-white"> 0000</h1>
+      <h1 class="mb-2 text-6xl font-semibold tracking-wider text-gray-900 dark:text-white">{{ $total }}</h1>
     </div>
     <p class="font-normal text-gray-100 ">total dukungan yang masuk</p>
   </a>
@@ -37,6 +37,37 @@
 </div>
   
 
+<!-- TW Elements is free under AGPL, with commercial license required for specific uses. See more details: https://tw-elements.com/license/ and contact us for queries at tailwind@mdbootstrap.com --> 
+  <div class="mb-3 ml-4">
+    <form action="/duitmasuk" method="get" class="relative mb-4 flex w-72 flex-wrap items-stretch">
+      <input
+        type="search"
+        name="search"
+        class="relative flex-auto rounded-l border border-solid border-neutral-100 bg-transparent bg-clip-border px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:focus:border-primary"
+        placeholder="Search"
+        aria-label="Search"
+        aria-describedby="button-addon1" />
+        
+        <!--Search button-->
+        <button
+        class="relative z-[2] flex items-center rounded-r bg-primary px-6 py-2.5 text-xs font-medium uppercase leading-tight text-white shadow-md transition duration-150 ease-in-out hover:bg-primary-700 hover:shadow-lg focus:bg-primary-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-primary-800 active:shadow-lg"
+        type="button"
+        id="button-addon1"
+        data-te-ripple-init
+        data-te-ripple-color="light">
+        <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+        class="h-5 w-5">
+        <path
+        fill-rule="evenodd"
+        d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z"
+        clip-rule="evenodd" />
+        </svg>
+      </button>
+    </form>
+  </div>
 
 <!-- Tables -->
 <div class="scroll-smooth focus:scroll-auto">
@@ -90,14 +121,15 @@
     
     <!-- tabel isi -->
     <tbody>
+    @foreach($histories as $history)
       <tr class="">
         <!-- Dari -->
         <td class="p-4 border-b border-blue-gray-50 border-r">
           <div class="flex items-center gap-3">
             <img src="https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-3.jpg" alt="John Michael" class="inline-block relative object-cover object-center rounded-full w-9 h-9 ">
             <div class="flex flex-col">
-              <p class="text-black block antialiased font-sans text-sm leading-normal text-blue-gray-900 font-normal">John Michael</p>
-              <p class="block antialiased font-sans text-sm leading-normal text-blue-gray-900 font-normal text-slate-500">john@creative-tim.com</p>
+              <p class="text-black block antialiased font-sans text-sm leading-normal text-blue-gray-900 font-normal">{{ $history->name }}</p>
+              <p class="block antialiased font-sans text-sm leading-normal text-blue-gray-900 font-normal text-slate-500">{{ $history->email }}</p>
             </div>
           </div>
         </td>
@@ -107,7 +139,7 @@
         <td class="p-4 border-b border-blue-gray-50 border-r">
           <div class="flex items-center w-96 gap-3">
             <div class="flex flex-col">
-              <p class="block antialiased font-sans text-sm leading-normal text-blue-gray-900 font-normal text-black">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis blanditiis fugit consequatur sit eligendi voluptatibus commodi aspernatur nesciunt quaerat labore et architecto, voluptate quo quibusdam saepe quos quis odit perspiciatis.</p>
+              <p class="block antialiased font-sans text-sm leading-normal text-blue-gray-900 font-normal text-black">{{ $history->message }}</p>
             </div>
           </div>
         </td>
@@ -116,7 +148,7 @@
         <!-- Nominal -->
         <td class="p-4 border-b border-blue-gray-50 border-r">
           <div class="flex flex-col">
-            <p class="text-black block antialiased font-sans text-sm leading-normal text-blue-gray-900 font-normal">Rp. 10.000.000</p>
+            <p class="text-black block antialiased font-sans text-sm leading-normal text-blue-gray-900 font-normal">Rp. {{ $history->nominal }}</p>
           </div>
         </td>
 
@@ -124,14 +156,14 @@
         <td class="p-4 border-b border-blue-gray-50 border-r">
           <div class="w-max">
             <div class="relative grid items-center font-sans font-bold uppercase whitespace-nowrap select-none bg-green-500/20 text-green-600 py-1 px-2 text-xs rounded-md" style="opacity: 1;">
-              <span class="">Completed</span>
+              <span class="">{{ $history->transaction->status }}</span>
             </div>
           </div>
         </td>
 
         <!-- Tanggal -->
         <td class="p-4 border-b border-blue-gray-50 border-r">
-          <p class="text-black block antialiased font-sans text-sm leading-normal text-blue-gray-900 font-normal">23/04/18</p>
+          <p class="text-black block antialiased font-sans text-sm leading-normal text-blue-gray-900 font-normal">{{ $history->created_at->format('d/m/Y') }}</p>
         </td>
 
         <!-- action -->
@@ -165,6 +197,7 @@
           </button>
         </td>
       </tr>
+      @endforeach
     </tbody>
   </table>
 </div>
