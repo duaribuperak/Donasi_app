@@ -9,16 +9,20 @@ use Illuminate\Support\Facades\Auth;
 
 class HistoryController extends Controller
 {
-    public function duitmasuk(Request $request) {
+    public function duitmasuk() {
+        
+        $search = Donation::latest();
+
+        if(request()->get('search')){
+            $search->where('name','like', '%' . request()->get('search') . '%');
+        } 
         
         $query = Donation::query()->with(['toUser', 'transaction'])->where('to_user_id', Auth::id());
 
-        
-
-        $histories = $query->get();
+        $histories = $query->merge($search)->get();
 
         $total = $histories->sum('nominal');
-
+        
         return view('duitmasuk', compact('histories', 'total'));
     }
     
