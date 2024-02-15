@@ -23,15 +23,17 @@ class Donation extends Model
         'updated_at' => 'datetime'
     ];
 
+    // kita yang mengirim ke user lain
     public function user(){
         return $this->belongsTo(User::class, 'user_id');
     }
 
-
+    // kita menerima dari user lain
     public function toUser(){
         return $this->belongsTo(User::class, 'to_user_id');
     }
 
+    // models ini terkait dengan transaksi
     public function transaction(){
 			return $this->hasOne(Transaction::class, 'donation_id');
 	}

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('donation_id')->constrained('donations');
+            $table->foreignId('donation_id')->constrained('donations')->cascadeOnDelete();
             $table->string('ref_id');
             $table->integer('amount');
             $table->string('status');

@@ -13,12 +13,14 @@ use Illuminate\Support\Facades\URL;
 class DonationsController extends Controller
 {
     public function kirimin(string $username) {
-        
+
+        // Metode untuk menampilkan formulir donasi untuk pengguna tertentu
         $user = User::query()->where('username', $username)->first();
         return view('kirimin', ["user" => $user]);
         
     }
 
+    // Metode untuk memperbarui status transaksi
     public function update(Request $request) {
         $transaction = Transaction::query()->where('ref_id', $request->get('order_id'))->firstOrFail();
 
@@ -30,6 +32,7 @@ class DonationsController extends Controller
         ]);
     }
 
+    // Metode untuk membuat donasi baru dan transaksi yang sesuai
     public function create(Request $request) {
         $donation = Donation::query()->create([
             "user_id" => $request->get('user_id'),
@@ -48,6 +51,7 @@ class DonationsController extends Controller
         ]);
     }
 
+    // Metode untuk membuat token Midtrans Snap untuk formulir pembayaran
     public function createSnapToken(Request $request){
         
         $url = env("MIDTRANS_API_URL") . "/snap/v1/transactions";
